@@ -9,5 +9,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: docker build -t qode-backend ./backend
-      - run: docker build -t qode-frontend ./backend
-      - run: docker-compose -f /root/infra-structure/docker-compose.yml up -d --profile qode-assignment
+      - run: docker build -t qode-frontend ./frontend
+      - run: docker-compose -f /root/infra-structure/docker-compose.yml up -d qode-backend,qode-frontend
