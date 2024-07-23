@@ -1,0 +1,30 @@
+# @format
+
+version: "3"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: my-mongodb
+    restart: always
+    ports:
+      - 27018:27017
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 3053:3000
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/qode-assignment
+      - PORT=3000
+      - APP_CONTEXT=api
+      - UPLOAD_DIR=public
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Devdockerfile
+    ports:
+      - 3052:3000

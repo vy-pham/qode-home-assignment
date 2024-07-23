@@ -1,0 +1,13 @@
+name: Frontend CI CD
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  Build:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t qode-backend ./backend
+      - run: docker build -t qode-frontend ./backend
+      - run: docker-compose -f /root/infra-structure/docker-compose.yml up -d --profile qode-assignment

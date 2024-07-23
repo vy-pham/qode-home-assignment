@@ -1,0 +1,16 @@
+.comments {
+  margin-top: 30px;
+  padding-left: calc(30px * var(--level));
+  .comment {
+    border-radius: 10px;
+    background-color: #cccccc;
+    padding: 10px;
+    .name {
+      font-weight: 600;
+      font-size: 20px;
+    }
+    +.comment {
+      margin-top: 30px;
+    }
+  }
+}
