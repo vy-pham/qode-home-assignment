@@ -29,11 +29,11 @@ export default function ImageDetail({ params }: { params: { id: string } }) {
   const [imageDetail, setImageDetail] = useState<ImageDetail | null>(null)
   const [comments, setComments] = useState<Comment[]>([])
   useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_HOST_URL}/api/uploads/${params.id}`).then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_HOST_URL}/uploads/${params.id}`).then((res) => {
       setImageDetail(res.data.data)
     })
 
-    axios.get(`${process.env.NEXT_PUBLIC_HOST_URL}/api/comments`, { params: { image: params.id } }).then((res) => {
+    axios.get(`${process.env.NEXT_PUBLIC_HOST_URL}/comments`, { params: { image: params.id } }).then((res) => {
       setComments(res.data.data)
     })
   }, [params.id])
@@ -46,7 +46,7 @@ export default function ImageDetail({ params }: { params: { id: string } }) {
     } else {
       body.image = params.id
     }
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_HOST_URL}/api/comments`, body)
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_HOST_URL}/comments`, body)
 
     api.open({
       message: res.data.message,
